@@ -10,6 +10,9 @@ out/
 node_modules/
 out/
 *.tgz
+<<<<<<< HEAD
 node_modules/
 out/
 *.tgz
+=======
+>>>>>>> 70dd894 (Add npm build and packaging cleanly)
