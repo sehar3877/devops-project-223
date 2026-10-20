@@ -1,6 +1,5 @@
 SRC_DIR := src
 OUT_DIR := out
-
 SOURCES := $(wildcard $(SRC_DIR)/*.md)
 OUTPUTS := $(patsubst $(SRC_DIR)/%.md,$(OUT_DIR)/%.html,$(SOURCES))
 
@@ -8,8 +7,9 @@ OUTPUTS := $(patsubst $(SRC_DIR)/%.md,$(OUT_DIR)/%.html,$(SOURCES))
 
 all: build
 
-$(OUT_DIR):
-	mkdir -p $(OUT_DIR)
+check: ## sanity check: markdown sources exist
+	@test -n "$(SOURCES)" || { echo "ERROR: no .md files in $(SRC_DIR)"; exit 1; }
+	@echo "check OK: $(words $(SOURCES)) source files"
 
 node_modules: package-lock.json
 	npm ci
@@ -17,15 +17,14 @@ node_modules: package-lock.json
 
 deps: node_modules ## install exactly what the lock file says
 
-check: ## verify sources exist
-	@test -n "$(SOURCES)" || (echo "No .md sources found" && exit 1)
-	@echo "check OK: $(words $(SOURCES)) source files"
+$(OUT_DIR):
+	mkdir -p $(OUT_DIR)
 
 $(OUT_DIR)/%.html: $(SRC_DIR)/%.md package-lock.json | $(OUT_DIR) node_modules
 	@echo "  BUILD $< -> $@"
 	@npm run --silent build -- $< $@
 
-build: $(OUTPUTS) ## build all pages
+build: $(OUTPUTS)
 
 test: build ## run the test suite against what was built
 	@npm test --silent
