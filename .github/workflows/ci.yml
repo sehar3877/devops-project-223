@@ -1,10 +1,12 @@
 name: CI
+
 on:
   push:
     branches: [main]
   pull_request:
   schedule:
-    - cron: '0 2 * * *'
+    - cron: '0 2 * * *'  # 02:00 UTC, nightly
+
 jobs:
   build:
     name: build-and-test
@@ -22,6 +24,7 @@ jobs:
           name: devops-pipeline
           path: '*.tgz'
           if-no-files-found: error
+
   audit:
     name: dependency-audit
     runs-on: ubuntu-24.04
