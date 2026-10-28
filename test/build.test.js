@@ -31,3 +31,9 @@ t3('no built page is empty', () => {
     a3.ok(fs3.statSync(path3.join(dir, p)).size > 0, p + ' is empty');
   }
 });
+
+test('every page names the course', () => {
+  for (const p of pages) {
+    assert.match(fs.readFileSync('out/' + p, 'utf8'), /DevOps/);
+  }
+});
