@@ -10,10 +10,6 @@
     "tools/",
     "README.md"
   ],
-<<<<<<< HEAD
-<<<<<<< HEAD
-=======
->>>>>>> 8d09137 (Add npm build and packaging)
   "repository": {
     "type": "git",
     "url": "git+https://github.com/sehar3877/devops-project-223.git"
@@ -21,24 +17,11 @@
   "publishConfig": {
     "registry": "https://npm.pkg.github.com"
   },
-<<<<<<< HEAD
-=======
->>>>>>> 70dd894 (Add npm build and packaging cleanly)
-=======
->>>>>>> 8d09137 (Add npm build and packaging)
   "scripts": {
     "build": "node tools/build.js",
     "test": "node --test"
   },
-<<<<<<< HEAD
-<<<<<<< HEAD
   "dependencies": {
-=======
-  "devDependencies": {
->>>>>>> 70dd894 (Add npm build and packaging cleanly)
-=======
-  "dependencies": {
->>>>>>> 8d09137 (Add npm build and packaging)
     "markdown-it": "^15.0.3"
   }
 }
