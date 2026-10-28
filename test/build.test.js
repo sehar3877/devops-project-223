@@ -34,3 +34,7 @@ test('every page is real HTML and not raw Markdown', () => {
     }
   });
 }
+
+test('the services page exists', () => {
+  assert.ok(fs.existsSync('out/services.html'));
+});
