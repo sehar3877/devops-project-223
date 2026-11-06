@@ -1,9 +1,10 @@
+kk
 SRC_DIR := src
 OUT_DIR := out
 SOURCES := $(wildcard $(SRC_DIR)/*.md)
 OUTPUTS := $(patsubst $(SRC_DIR)/%.md,$(OUT_DIR)/%.html,$(SOURCES))
 
-.PHONY: all check deps build test package clean ci lint
+.PHONY: all check deps build test package clean ci lint coverage
 
 all: build
 
@@ -30,6 +31,9 @@ lint: node_modules ## static analysis: seconds, so it runs first
 	npm run --silent lint
 
 test: build ## run the test suite against what was built
+	@npm test --silent
+
+coverage: test ## run test coverage
 	@npm test --silent
 
 package: test ## produce the versioned artifact
