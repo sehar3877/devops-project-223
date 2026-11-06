@@ -44,4 +44,6 @@ package: test ## produce the versioned artifact
 clean: ## remove all generated files
 	rm -rf $(OUT_DIR) coverage *.tgz
 
-ci: clean deps check lint test package ## the build server entry point
+ci: clean deps check lint test package ## everything, in pipeline order
+lint: node_modules ## static analysis: seconds, so it runs first
+	npm run --silent lint
