@@ -1,4 +1,3 @@
-kk
 SRC_DIR := src
 OUT_DIR := out
 SOURCES := $(wildcard $(SRC_DIR)/*.md)
