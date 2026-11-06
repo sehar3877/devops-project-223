@@ -1,18 +1,11 @@
 #!/usr/bin/env node
 // tools/build.js — renders one Markdown source into one HTML page.
-// Called by the Makefile:  npm run build -- src/notes.md out/notes.html
+// Called by the Makefile: npm run build -- src/notes.md out/notes.html
 const fs = require('fs');
 const path = require('path');
 const MarkdownIt = require('markdown-it');
 
 const md = new MarkdownIt({ html: false, linkify: true, typographer: true });
-
-// "src/our-notes.md" -> "Our Notes"
-function makeTitle(src) {
-  return path.basename(src, '.md')
-    .replace(/-/g, ' ')
-    .replace(/\b\w/g, (c) => c.toUpperCase());
-}
 
 // The part worth testing: Markdown text in, a complete HTML page out.
 function renderPage(markdown, title) {
@@ -30,13 +23,13 @@ function main(argv) {
     console.error('usage: build.js <source.md> <dest.html>');
     return 2;
   }
-  const html = renderPage(fs.readFileSync(src, 'utf8'), makeTitle(src));
+  const html = renderPage(fs.readFileSync(src, 'utf8'), path.basename(src, '.md'));
   fs.mkdirSync(path.dirname(dest), { recursive: true });
   fs.writeFileSync(dest, html);
   return 0;
 }
 
-module.exports = { makeTitle, renderPage, main };
+module.exports = { renderPage, main };
 
 if (require.main === module) {
   process.exitCode = main(process.argv.slice(2));
