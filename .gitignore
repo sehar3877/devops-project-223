@@ -4,14 +4,4 @@ __pycache__/
 node_modules/
 out/
 *.tgz
-node_modules/
-out/
-*.tgz
-node_modules/
-out/
-*.tgz
-node_modules/
-out/
-*.tgz
-coverage/
 coverage/
